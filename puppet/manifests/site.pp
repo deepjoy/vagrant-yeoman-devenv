@@ -55,14 +55,24 @@ node default {
 
   package { 'git': }
 
-  package { 'grunt-cli': provider => 'npm', }
+  package { 'grunt-cli':
+    provider => 'npm',
+    require  => Package["nodejs"]
+  }
 
-  package { 'yo': provider => 'npm', }
+  package { 'yo':
+    provider => 'npm',
+    require  => Package["nodejs"]
+  }
 
-  package { 'bower': provider => 'npm', }
+  package { 'bower':
+    provider => 'npm',
+    require  => Package["nodejs"]
+  }
 
   package { 'generator-webapp':
     ensure   => present,
     provider => 'npm',
+    require  => Package["nodejs"]
   }
 }

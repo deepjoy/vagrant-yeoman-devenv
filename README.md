@@ -4,7 +4,7 @@ vagrant-yoeman-devenv
 Sets up a vagrant virtual box with yeoman and the angular generator.
 
 
-Prerequisits
+Prerequisites
 ------------
 
 * Install VirtualBox

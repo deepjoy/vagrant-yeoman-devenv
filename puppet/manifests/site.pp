@@ -44,6 +44,11 @@ node default {
     unless  => "npm --version |grep \"^[2|3]\""
   }
 
+  package { 'compass':
+    ensure   => 'installed',
+    provider => 'gem',
+  }
+
   #  package { 'nginx': ensure => installed, }
   #
   #  service { 'nginx':
@@ -70,7 +75,7 @@ node default {
     require  => Package["nodejs"]
   }
 
-  package { 'generator-webapp':
+  package { 'generator-angular':
     ensure   => present,
     provider => 'npm',
     require  => Package["nodejs"]

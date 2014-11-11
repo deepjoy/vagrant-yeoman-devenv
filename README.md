@@ -18,7 +18,7 @@ Usage
 * Run `vagrant up`
 * Run `vagrant ssh`
 * Navigate to the angular folder(this folder will sync to the host machine) and run yeoman `cd /home/vagrant/angular; yo angular`
-* Run `./grunt-fix.sh` to make the grunt server accessible from the host machine
+* Run command `fix-grunt-file-listen-host` to make the grunt server accessible from the host machine
 * Start the webserver with `grunt serve`
 * Open a browser on your host machine to http://localhost:9000
 

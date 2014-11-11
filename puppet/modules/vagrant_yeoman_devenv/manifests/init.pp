@@ -40,4 +40,10 @@ class vagrant_yeoman_devenv {
     provider => 'npm',
     require  => Package["nodejs"]
   }
+
+  file { "create-grunt-interface-fix-script":
+    path   => "/usr/bin/fix-grunt-file-listen-host",
+    ensure => "link",
+    target => "/vagrant/grunt-fix.sh"
+  }
 }

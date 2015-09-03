@@ -1,45 +1,29 @@
 class vagrant_yeoman_devenv {
-  include vagrant_yeoman_devenv::sys_update
-  include apt
-  include nodejs
-
-  Exec {
-    path      => ["/bin/", "/sbin/", "/usr/bin/", "/usr/sbin/"],
-    logoutput => "on_failure"
-  }
-
-  apt::ppa { 'ppa:chris-lea/node.js': before => Package["nodejs"] }
+  require vagrant_yeoman_devenv::sys_update
+  require apt
+  require nodejs
 
   exec { "upgrade-latest-npm":
-    command => "npm update npm -g",
-    require => Package["nodejs"],
-    unless  => "npm --version |grep \"^[2|3]\""
+    command   => "npm update npm -g",
+    require   => Package["nodejs"],
+    unless    => "npm --version |grep \"^[2|3]\"",
+    path      => ["/bin/", "/sbin/", "/usr/bin/", "/usr/sbin/"],
+    logoutput => "on_failure"
   }
 
   package { 'compass': provider => 'gem' }
 
   package { 'git': }
 
-  package { 'grunt-cli':
-    provider => 'npm',
-    require  => Package["nodejs"]
-  }
+  package { 'grunt-cli': provider => 'npm', }
 
-  package { 'yo':
-    provider => 'npm',
-    require  => Package["nodejs"]
-  }
+  package { 'yo': provider => 'npm', }
 
-  package { 'bower':
-    provider => 'npm',
-    require  => Package["nodejs"]
-  }
+  package { 'lodash': provider => 'npm', }
 
-  package { 'generator-angular':
-    ensure   => present,
-    provider => 'npm',
-    require  => Package["nodejs"]
-  }
+  package { 'bower': provider => 'npm', }
+
+  package { 'generator-angular': provider => 'npm', }
 
   file { "create-grunt-interface-fix-script":
     path   => "/usr/bin/fix-grunt-file-listen-host",
@@ -47,3 +31,4 @@ class vagrant_yeoman_devenv {
     target => "/vagrant/grunt-fix.sh"
   }
 }
+

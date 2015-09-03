@@ -6,14 +6,15 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.hostname = "ui-dev"
-  config.vm.box = "trusty64"
+  config.vm.box = "vivid64"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 1024
+    v.memory = 4096
+    v.cpus = 4
   end
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
 
   # projects folder next to this Vagrantfile will be shared with the VM
-  config.vm.synced_folder "angular", "/home/vagrant/angular"
+  config.vm.synced_folder "source", "/home/vagrant/source"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
